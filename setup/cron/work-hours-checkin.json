@@ -1,0 +1,26 @@
+{
+  "name": "work-hours-checkin",
+  "description": "Daily work-hours check-in reminder (weekdays, 9am-5pm UTC)",
+  "enabled": true,
+  "schedule": "0 12 * * 1-5",
+  "timezone": "UTC",
+  "profile": "scheduler",
+  "command": "hermes remind",
+  "args": [
+    "--title",
+    "Work-hours check-in",
+    "--message",
+    "Time to check in: Are you on track with today's priorities?",
+    "--priority",
+    "normal"
+  ],
+  "notification": {
+    "type": "local",
+    "delivery": "stdout"
+  },
+  "metadata": {
+    "category": "reminders",
+    "owner": "Thomas",
+    "created_at": "2026-09-14T12:00:00Z"
+  }
+}

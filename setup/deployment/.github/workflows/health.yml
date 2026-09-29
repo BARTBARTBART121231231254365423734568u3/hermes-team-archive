@@ -1,0 +1,25 @@
+name: Hermes external health
+true:
+  workflow_dispatch: null
+  schedule:
+  - cron: 11,26,41,56 * * * *
+permissions:
+  contents: read
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+    - name: Verify Hermes identity and readiness
+      shell: python
+      run: "import json, time, urllib.request\nurl = 'https://hermes-agent-railway-production-b7ce.up.railway.app/api/health'\n\
+        for attempt in range(3):\n    try:\n        with urllib.request.urlopen(url,\
+        \ timeout=15) as response:\n            data = json.load(response)\n     \
+        \   assert data.get('application') == 'hermes-agent', 'Wrong application on\
+        \ Hermes URL'\n        assert data.get('status') == 'ready', 'Hermes backend\
+        \ is not ready'\n        assert all(data['services'][name]['running'] for\
+        \ name in ('dashboard', 'gateway'))\n        assert data.get('ticket_errors_last_5m',\
+        \ 0) < 5, 'Repeated WebSocket ticket failures'\n        print('Hermes ready:',\
+        \ data.get('revision'))\n        break\n    except Exception:\n        if\
+        \ attempt == 2:\n            raise\n        time.sleep(20)\n"
+

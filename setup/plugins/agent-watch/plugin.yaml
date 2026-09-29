@@ -1,0 +1,6 @@
+name: agent-watch
+version: 1.0.0
+description: Live desktop pane showing active Kanban agents and their current work.
+author: Thomas
+license: MIT
+

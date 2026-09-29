@@ -1,0 +1,406 @@
+model:
+  provider: openai-codex
+  default: gpt-6-sol
+  base_url: https://chatgpt.com/backend-api/codex
+  api_mode: codex_responses
+fallback_providers:
+- provider: muse-code
+  model: muse-spark-1.3-contributor
+toolsets:
+- kanban
+agent:
+  agent_cache:
+    max_size: 48
+    memory_high_mb: '3072'
+browser:
+  backend: 'off'
+  use_real_profile: true
+checkpoints:
+  enabled: true
+context_file_max_chars: 60000
+compression:
+  proactive_prune_tokens: 48000
+  model_thresholds:
+    muse-code:muse-spark-1.3: 0.09
+dashboard:
+  basic_auth:
+    username: admin
+    password_hash: <REDACTED_SECRET>
+    secret: <REDACTED_SECRET>
+  public_url: https://hermes-agent-railway-production-b7ce.up.railway.app
+memory:
+  provider: ''
+discord:
+  require_mention: false
+  free_response_channels: <REDACTED_SECRET>
+  allowed_channels: <REDACTED_SECRET>
+  no_thread_channels: <REDACTED_ID>
+  notification_policy: decisions_only
+  decision_owner_id: <REDACTED_SECRET>
+  decision_dm_channel_id: <REDACTED_SECRET>
+whatsapp:
+  unauthorized_dm_behavior: ignore
+approvals:
+  mode: 'off'
+  single_query_mode: deny
+  deny:
+  - git push --force*
+  - git push * --force*
+  - git push -f*
+  - gh repo delete*
+  - gh api *repos* -X DELETE*
+  - railway service delete*
+  - railway project delete*
+  - railway volume delete*
+  - railway environment delete*
+  - rm -rf /*
+  - rm -rf ~*
+  - rm -rf .git*
+plugins:
+  enabled:
+  - agent-watch
+  - disk-cleanup
+  - muse-code-subscription
+  - observability/langfuse
+  - quota
+  - security-guidance
+  disabled:
+  - browser/browserbase
+security:
+  allow_data_training_tiers_noninteractive: true
+kanban:
+  dispatch_in_gateway: true
+  failure_limit: 2
+  max_in_progress: 2
+  model_routing:
+    roles:
+      default:
+        low:
+          model: gpt-5.6-terra
+          provider: openai-codex
+        medium:
+          model: gpt-6-sol
+          provider: openai-codex
+        hard:
+          model: gpt-6-astra
+          provider: openai-codex
+      devops:
+        low:
+          model: gpt-5.6-terra
+          provider: openai-codex
+        medium:
+          model: gpt-6-sol
+          provider: openai-codex
+        hard:
+          model: gpt-6-astra
+          provider: openai-codex
+      security:
+        low:
+          model: gpt-5.6-terra
+          provider: openai-codex
+        medium:
+          model: gpt-6-sol
+          provider: openai-codex
+        hard:
+          model: gpt-6-astra
+          provider: openai-codex
+      planner:
+        low:
+          model: gpt-5.6-terra
+          provider: openai-codex
+        medium:
+          model: gpt-6-sol
+          provider: openai-codex
+        hard:
+          model: gpt-6-astra
+          provider: openai-codex
+      researcher:
+        low:
+          model: gpt-5.6-terra
+          provider: openai-codex
+        medium:
+          model: gpt-6-sol
+          provider: openai-codex
+        hard:
+          model: gpt-6-astra
+          provider: openai-codex
+      designer:
+        low:
+          model: gpt-5.6-terra
+          provider: openai-codex
+        medium:
+          model: gpt-6-sol
+          provider: openai-codex
+        hard:
+          model: gpt-6-astra
+          provider: openai-codex
+      scheduler:
+        low:
+          model: gpt-5.6-terra
+          provider: openai-codex
+        medium:
+          model: gpt-6-sol
+          provider: openai-codex
+        hard:
+          model: gpt-6-astra
+          provider: openai-codex
+      reviewer:
+        low:
+          model: gpt-5.6-terra
+          provider: openai-codex
+        medium:
+          model: gpt-6-sol
+          provider: openai-codex
+        hard:
+          model: gpt-6-astra
+          provider: openai-codex
+gateway:
+  multiplex_profiles: true
+  profile_routes:
+  - name: coder-channel
+    platform: discord
+    chat_id: <REDACTED_ID>
+    profile: coder
+  - name: designer-channel
+    platform: discord
+    chat_id: <REDACTED_ID>
+    profile: designer
+  - name: planner-channel
+    platform: discord
+    chat_id: <REDACTED_ID>
+    profile: planner
+  - name: researcher-channel
+    platform: discord
+    chat_id: <REDACTED_ID>
+    profile: researcher
+  - name: scheduler-channel
+    platform: discord
+    chat_id: <REDACTED_ID>
+    profile: scheduler
+  - name: security-channel
+    platform: discord
+    chat_id: <REDACTED_ID>
+    profile: security
+  - name: devops-channel
+    platform: discord
+    chat_id: <REDACTED_ID>
+    profile: devops
+onboarding:
+  seen:
+    busy_input_prompt: true
+    tool_progress_prompt: true
+secrets:
+  bitwarden:
+    enabled: true
+    project_id: 076d6bc7-f0e3-4704-8a96-b4b20136825c
+    override_existing: false
+    server_url: https://vault.bitwarden.eu
+_config_version: 45
+platforms:
+  discord:
+    enabled: true
+    home_channel:
+      platform: discord
+      chat_id: <REDACTED_ID>
+      name: Hermes Updates
+      user_id: <REDACTED_SECRET>
+    extra:
+      command_sync_policy: false
+  webhook:
+    enabled: true
+    extra:
+      port: 8644
+      secret: <REDACTED_SECRET>
+  whatsapp:
+    enabled: false
+platform_toolsets:
+  discord:
+  - clarify
+  - code_execution
+  - connections
+  - cronjob
+  - delegation
+  - file
+  - image_gen
+  - kanban
+  - memory
+  - session_search
+  - skills
+  - terminal
+  - todo
+  - vision
+  - web
+  cli:
+  - clarify
+  - code_execution
+  - connections
+  - cronjob
+  - delegation
+  - file
+  - image_gen
+  - kanban
+  - memory
+  - session_search
+  - skills
+  - terminal
+  - todo
+  - vision
+  - web
+  webhook:
+  - clarify
+  - connections
+  - file
+  - kanban
+  - terminal
+  - vision
+  - web
+  whatsapp:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - cronjob
+  - delegation
+  - file
+  - image_gen
+  - kanban
+  - memory
+  - session_search
+  - skills
+  - terminal
+  - todo
+  - tts
+  - vision
+  - web
+known_plugin_toolsets:
+  discord:
+  - a2a
+  - spotify
+  cli:
+  - a2a
+  - spotify
+  webhook:
+  - a2a
+  - spotify
+  whatsapp:
+  - a2a
+  - spotify
+known_builtin_toolsets:
+  discord:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - context_engine
+  - cronjob
+  - delegation
+  - discord
+  - discord_admin
+  - file
+  - homeassistant
+  - image_gen
+  - memory
+  - session_search
+  - skills
+  - spotify
+  - stt
+  - terminal
+  - todo
+  - tts
+  - video
+  - video_gen
+  - vision
+  - web
+  - x_search
+  - yuanbao
+  cli:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - context_engine
+  - cronjob
+  - delegation
+  - discord
+  - discord_admin
+  - file
+  - homeassistant
+  - image_gen
+  - memory
+  - session_search
+  - skills
+  - spotify
+  - stt
+  - terminal
+  - todo
+  - tts
+  - video
+  - video_gen
+  - vision
+  - web
+  - x_search
+  - yuanbao
+  webhook:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - context_engine
+  - cronjob
+  - delegation
+  - discord
+  - discord_admin
+  - file
+  - homeassistant
+  - image_gen
+  - memory
+  - session_search
+  - skills
+  - spotify
+  - stt
+  - terminal
+  - todo
+  - tts
+  - video
+  - video_gen
+  - vision
+  - web
+  - x_search
+  - yuanbao
+  whatsapp:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - context_engine
+  - cronjob
+  - delegation
+  - discord
+  - discord_admin
+  - file
+  - homeassistant
+  - image_gen
+  - kanban
+  - memory
+  - session_search
+  - skills
+  - spotify
+  - stt
+  - terminal
+  - todo
+  - tts
+  - video
+  - video_gen
+  - vision
+  - web
+  - x_search
+  - yuanbao
+DISCORD_ALLOWED_USERS: <REDACTED_ID>
+DISCORD_ALLOWED_CHANNELS: <REDACTED_ID>
+DISCORD_FREE_RESPONSE_CHANNELS: <REDACTED_ID>
+

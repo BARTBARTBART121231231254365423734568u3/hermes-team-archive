@@ -1,0 +1,9 @@
+{
+  "application": "hermes-agent",
+  "project_id": "bd24ec95-721d-47df-95e3-37dedaa1b5d5",
+  "service_id": "5e5c029d-2c1f-4bea-ba69-92bc9fdadc11",
+  "environment_id": "49985745-9e5c-4669-9ff3-d1d733ca71cd",
+  "repository": "BARTBARTBART121231231254365423734568u3/hermes-agent-railway",
+  "branch": "main",
+  "health_url": "https://hermes-agent-railway-production-b7ce.up.railway.app/api/health"
+}

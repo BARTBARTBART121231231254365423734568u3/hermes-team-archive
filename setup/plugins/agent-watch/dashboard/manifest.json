@@ -1,0 +1,7 @@
+{
+  "name": "agent-watch",
+  "label": "Agent Watch",
+  "description": "Read-only live status feed for active Kanban workers.",
+  "version": "1.0.0",
+  "api": "plugin_api.py"
+}

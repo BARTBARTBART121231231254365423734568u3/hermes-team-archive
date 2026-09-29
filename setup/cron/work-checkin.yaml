@@ -1,0 +1,34 @@
+id: work-checkin
+name: Work Hours Check-in
+description: Brief daily check-in reminder during business hours
+schedule:
+  cron: 0 11 * * 1-5
+  timezone: UTC
+delivery:
+  type: text
+  destination: stdout
+task:
+  type: message
+  content: '✓ Work Hours Check-in
+
+
+    How''s progress on today''s goals?
+
+    Take a moment to review:
+
+    • What''s done?
+
+    • What''s next?
+
+    • Any blockers?
+
+
+    Keep shipping. ⚡
+
+    '
+tags:
+- daily
+- productivity
+- routine
+enabled: true
+

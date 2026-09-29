@@ -1,0 +1,112 @@
+model:
+  provider: openai-codex
+  default: gpt-5.6-terra
+  base_url: https://chatgpt.com/backend-api/codex
+  api_mode: codex_responses
+fallback_providers:
+- provider: muse-code
+  model: muse-spark-1.3-contributor
+agent:
+  reasoning_effort: high
+plugins:
+  enabled:
+  - muse-code-subscription
+  disabled: []
+security:
+  allow_data_training_tiers_noninteractive: true
+onboarding:
+  seen:
+    tool_progress_prompt: true
+_config_version: 45
+platform_toolsets:
+  cli:
+  - connections
+  - delegation
+  - file
+  - kanban
+  - terminal
+  discord:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - cronjob
+  - delegation
+  - file
+  - image_gen
+  - memory
+  - session_search
+  - skills
+  - terminal
+  - todo
+  - tts
+  - vision
+  - web
+known_plugin_toolsets:
+  cli:
+  - a2a
+  - spotify
+  discord:
+  - a2a
+  - spotify
+known_builtin_toolsets:
+  cli:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - context_engine
+  - cronjob
+  - delegation
+  - discord
+  - discord_admin
+  - file
+  - homeassistant
+  - image_gen
+  - kanban
+  - memory
+  - session_search
+  - skills
+  - spotify
+  - stt
+  - terminal
+  - todo
+  - tts
+  - video
+  - video_gen
+  - vision
+  - web
+  - x_search
+  - yuanbao
+  discord:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - context_engine
+  - cronjob
+  - delegation
+  - discord
+  - discord_admin
+  - file
+  - homeassistant
+  - image_gen
+  - kanban
+  - memory
+  - session_search
+  - skills
+  - spotify
+  - stt
+  - terminal
+  - todo
+  - tts
+  - video
+  - video_gen
+  - vision
+  - web
+  - x_search
+  - yuanbao
+

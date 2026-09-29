@@ -1,0 +1,152 @@
+model:
+  provider: openai-codex
+  default: gpt-6-sol
+  base_url: https://chatgpt.com/backend-api/codex
+  api_mode: codex_responses
+fallback_providers:
+- provider: muse-code
+  model: muse-spark-1.3-contributor
+toolsets:
+- kanban
+agent:
+  reasoning_effort: high
+browser:
+  backend: 'off'
+  use_real_profile: false
+checkpoints:
+  enabled: true
+context_file_max_chars: 60000
+compression:
+  proactive_prune_tokens: 48000
+memory:
+  provider: ''
+approvals:
+  mode: smart
+  deny:
+  - git push --force*
+  - git push * --force*
+  - git push -f*
+  - gh repo delete*
+  - gh api *repos* -X DELETE*
+  - railway service delete*
+  - railway project delete*
+  - railway volume delete*
+  - railway environment delete*
+  - rm -rf /*
+  - rm -rf ~*
+  - rm -rf .git*
+plugins:
+  enabled:
+  - muse-code-subscription
+  disabled: []
+security:
+  allow_data_training_tiers_noninteractive: true
+onboarding:
+  seen:
+    busy_input_prompt: true
+    tool_progress_prompt: true
+secrets:
+  bitwarden:
+    enabled: true
+    project_id: 076d6bc7-f0e3-4704-8a96-b4b20136825c
+    server_url: https://vault.bitwarden.eu
+  preserve_existing:
+  - DISCORD_BOT_TOKEN
+_config_version: 45
+platforms:
+  discord:
+    enabled: false
+    home_channel:
+      platform: discord
+      chat_id: <REDACTED_SECRET>
+      name: 'Claude/Hermes / #chatlog'
+      user_id: <REDACTED_SECRET>
+  webhook:
+    enabled: false
+    extra:
+      port: 8644
+      secret: <REDACTED_SECRET>
+platform_toolsets:
+  discord:
+  - clarify
+  - connections
+  - delegation
+  - file
+  - kanban
+  - memory
+  - terminal
+  cli:
+  - clarify
+  - connections
+  - delegation
+  - file
+  - kanban
+  - memory
+  - terminal
+known_plugin_toolsets:
+  discord:
+  - a2a
+  - spotify
+  cli:
+  - a2a
+  - spotify
+known_builtin_toolsets:
+  discord:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - context_engine
+  - cronjob
+  - delegation
+  - discord
+  - discord_admin
+  - file
+  - homeassistant
+  - image_gen
+  - kanban
+  - memory
+  - session_search
+  - skills
+  - spotify
+  - stt
+  - terminal
+  - todo
+  - tts
+  - video
+  - video_gen
+  - vision
+  - web
+  - x_search
+  - yuanbao
+  cli:
+  - browser
+  - clarify
+  - code_execution
+  - computer_use
+  - connections
+  - context_engine
+  - cronjob
+  - delegation
+  - discord
+  - discord_admin
+  - file
+  - homeassistant
+  - image_gen
+  - kanban
+  - memory
+  - session_search
+  - skills
+  - spotify
+  - stt
+  - terminal
+  - todo
+  - tts
+  - video
+  - video_gen
+  - vision
+  - web
+  - x_search
+  - yuanbao
+
