@@ -8,7 +8,7 @@ Private snapshot of Thomas's Hermes agent/team configuration for architecture an
 | --- | --- |
 | Manager prompt / system instructions | `setup/SOUL.md`, `setup/team/TEAM.md`, `setup/team/task-template.md` |
 | Each specialist's prompt and available skills | `setup/profiles/<profile>/SOUL.md`, `setup/profiles/<profile>/skills/` |
-| Configured models, toolsets, MCP references, plugin switches, dispatch | `setup/config.yaml`, `setup/profiles/<profile>/config.yaml` |
+| Configured models, toolsets, plugin switches, dispatch | `setup/config.yaml`, `setup/profiles/<profile>/config.yaml` |
 | All installed skill source and references | `setup/skills/`, and profile-specific `setup/profiles/<profile>/skills/` |
 | Automations and scheduled workflows | `setup/cron/`, `setup/scripts/`, profile `cron/jobs.json` where present |
 | Plugins and hooks | `setup/plugins/`, `setup/profiles/<profile>/plugins/`, `setup/hooks/`, `setup/desktop-plugins/` |
@@ -20,6 +20,7 @@ Core framework source is maintained separately by Nous Research: https://github.
 ## Boundaries / security
 
 - No `.env`, OAuth credentials, authentication stores, personal memory, chat sessions, Kanban database/attachments, logs, caches, runtime backups, node_modules, worktrees or full application repositories are exported.
+- No standalone MCP configuration file was found in the root or specialist-profile directories; do not infer an active MCP server merely from an installed skill mentioning MCP. Likewise no root `.hermes.md`, `HERMES.md`, `AGENTS.md` or `CLAUDE.md` was present in the live setup; the upstream source `AGENTS.md` instructions are included in `core-instructions`.
 - Redacted config values are **not functional**. Do not deploy or replace a live configuration from this snapshot.
 - Profile skills are exported separately on purpose: review the actual per-agent load and overlaps. Bundled skills may recur across profiles.
 - A private repository is not a permission to share unreviewed source publicly. Re-run the exporter and inspect the diff plus credential scan before future pushes. Never commit real tokens.
