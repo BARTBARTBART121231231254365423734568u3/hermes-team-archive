@@ -1,3 +1,5 @@
+> **Verouderd – zie [hermes-team-setup](https://github.com/BARTBARTBART121231231254365423734568u3/hermes-team-setup)** (en [hermes-discord-setup](https://github.com/BARTBARTBART121231231254365423734568u3/hermes-discord-setup) voor Discord).
+
 # Hermes team setup — review snapshot
 
 Private snapshot of Thomas's Hermes agent/team configuration for architecture and workflow review. **This is not a runnable restore, nor a dump of all of `~/.hermes`.** It contains the actual instructions, configuration shape, profile-specific skills, delegation/team workflows, cron definitions, local scripts/plugins, desktop plugins, and deployment instructions, with detected credentials and routing IDs replaced by placeholders. The exporter is in `export_setup.py`.
